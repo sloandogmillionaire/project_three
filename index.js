@@ -11,12 +11,16 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(ejsLayouts);
 // app.use(express.static('assets'));
 
+// GET foursquare search page (this is home page)
 app.get('/', function(req, res) {
   // parameters are differientiated in foursquare with an &
   console.log(results);
   res.render('search');
 });
 
+
+// pass in form query and hit foursquare api then pass in variables and
+// render results view of all foursquare objects
 app.get('/search', function(req,res) {
   var fourSquareId = process.env.FOURSQUARE_ID;
   var fourSquareSecret = process.env.FOURSQUARE_SECRET;
@@ -31,13 +35,20 @@ app.get('/search', function(req,res) {
   request(url, function(error, response, data) {
     // res.send(JSON.parse(data));
     res.render('results', { results: JSON.parse(data) });
-  });
+    });
 });
 
-app.get('/results', function(req,res) {
-  res.render('results', {results: results});
-  console.log(results.response.venues);
+// Get eventful search page
+app.get('/2', function(req, res) {
+   res.render('search2');
 });
+
+
+// Pass in form query and hit eventful API and then pass in variables
+// render results view of all foursquare objects
+app.get('/search2', function(req,res) {
+    res.send('This will be full of eventbrite responses soon!');
+})
 
 
 
