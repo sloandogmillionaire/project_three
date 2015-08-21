@@ -1,0 +1,128 @@
+body {
+  font: 16px/1.5 'Open Sans', Helvetica, Helvetica Neue, Arial, sans-serif;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+h1 {
+  padding: 20% 0 0 0;
+  margin: 0;
+  text-align: center;
+  font-size: 36px;
+  color: white;
+  position: relative;
+}
+
+
+h1:before {
+  content: '❤';
+  display: block;
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  text-align: center;
+  width: 100px;
+  margin-left: -50px;
+  color: white;
+  font-size: 30px;
+}
+
+p {
+  text-align: center;
+  color: white;
+}
+
+strong {
+  color: white;
+}
+section {
+  height: 100%;
+  position: relative;
+  text-align: center;
+}
+
+/* Center aligned first section */
+section .inner {
+  margin: 0 auto;
+  max-width: 85%;
+}
+
+/* Content of the following sections aligned next to the appScreen */
+section .fuckstick {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 200%);
+  text-align: left;
+}
+
+/* appScreen/Card positioned to the left - this is a default position */
+.appScreen {
+  width: 70vw;
+  height: 420px;
+  border-radius: 10px;
+  position: fixed;
+  margin: 0 auto;
+  top: 10%;
+  left: 15%;
+  /*transform: translate(-150%, -50%);*/
+  /*background-color: #3757D0;*/
+  /*background-image: -webkit-radial-gradient(#81bcff, #5d7fce);*/
+  /*background-image: radial-gradient(#81bcff, #5d7fce);*/
+}
+
+/* Centered content of the ScrollMagic card */
+
+
+.appScreen p {
+  font-size: 140px;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Letters hidden by default */
+.appScreen p.appImg2, .appScreen p.appImg3, .appScreen p.appImg4 {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* ScrollMagic hat on top of letters */
+.appScreen p.appImg {
+  z-index: 2;
+}
+.appScreen p.appImg img {
+  max-width: 130px;
+  top: 20px;
+}
+
+.down-arrow {
+  /*background-image: url(img/downArrow.svg);*/
+  margin-top: 20vh;
+}
+
+#one {
+  top: 20px;
+}
+
+.inner.outline {
+  background-color: rgba(100,100,100, 0.5);
+  width: 50%;
+}
+
+div.highliter1 {
+  border: 2px red solid;
+  position: absolute;
+  width: 180px;
+  height: 60px;
+  z-index: 5;
+  transform: translate(55vw, 85%);
+  opacity: 0;
+}
+
