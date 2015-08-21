@@ -1,8 +1,7 @@
 $(document).ready(function(){
 
   $("#show-events").popover();
-
-
+  var myMapLayers;
 
 function drawMap(mapData, api){
   // Builds the map container
@@ -17,7 +16,7 @@ function drawMap(mapData, api){
 
 
   // add empty layer to map
-      var myMapLayers = L.layerGroup().addTo(map);
+      myMapLayers = L.layerGroup().addTo(map);
 
   // grab container for search results
       var listings = document.querySelector(".listings");
@@ -95,7 +94,7 @@ function drawMap(mapData, api){
             };
         });
 
-    } else if (api === "eventful"){
+    } else if (api === "eventful") {
         for (var i = 0; i < mapData.events.event.length; i++) {
           var event = mapData.events.event[i];
           var latlng = L.latLng(event.latitude, event.longitude);
@@ -165,7 +164,7 @@ function drawMap(mapData, api){
                return false;
             };
       });
-    }
+    } return myMapLayers
   } // end drawMap function
 
   $('#searchBtn1').on("click", function(e) {
@@ -254,7 +253,7 @@ function drawMap(mapData, api){
       url: "/dates/" + $("#dateID").val() + "/search" ,
       data: $(this).serialize(),
       success: function(response){
-        console.log(response);
+
       }
     }).done(function(){
       $.getJSON("/dates/" + $("#dateID").val() + "/eventlist", function(venues){
@@ -263,6 +262,22 @@ function drawMap(mapData, api){
           myEvents += "<li>"
           myEvents += venue.name;
           myEvents += "</li>";
+          // MAPBOX SHOW FAVORITES
+          var latlng = L.latLng(venue.lat, venue.lng);
+          var marker = L.marker(latlng, {
+              icon: L.mapbox.marker.icon({
+                "marker-color": "#00FFD2",
+                "marker-symbol": "marker",
+                "marker-size": "large"
+              }),
+              "title": venue.name,
+              "idx" : venue.id
+            })
+          .bindPopup("<strong><a href='" + venue.url + "' target='_blank'>" +
+            venue.name + "</a></strong><h3>Your date!</h3>" )
+            .addTo(myMapLayers);
+
+        // MAPBOX SHOW FAVORITES
         });
 
         $("#show-events").attr("data-content", myEvents + "</ul>");
@@ -278,6 +293,7 @@ function drawMap(mapData, api){
 
 }); // end doc.ready function
 
+// creates form to add events to date
 var formCreator = function(values){
   var form = document.createElement("form");
 
