@@ -184,16 +184,13 @@ function drawMap(mapData, api){
       if (searchTerm){
         $.getJSON("/dates/results?what=" + searchTerm, function(searchData) {
             // if (searchData.length > 0) {
-              var myMapLayers = drawMap(searchData, "foursquare");
-              console.log(myMapLayers);
+              drawMap(searchData, "foursquare");
             // }
         });
       } else {
         console.log("no term")
       }
-      return myMapLayers
   });
-  console.log(myMapLayers);
 
 
   $('#searchBtn2').on("click", function(e) {
@@ -256,7 +253,7 @@ function drawMap(mapData, api){
       url: "/dates/" + $("#dateID").val() + "/search" ,
       data: $(this).serialize(),
       success: function(response){
-        console.log(response);
+
       }
     }).done(function(){
       $.getJSON("/dates/" + $("#dateID").val() + "/eventlist", function(venues){
@@ -265,10 +262,8 @@ function drawMap(mapData, api){
           myEvents += "<li>"
           myEvents += venue.name;
           myEvents += "</li>";
-          console.log(myEvents);
           // MAPBOX SHOW FAVORITES
           var latlng = L.latLng(venue.lat, venue.lng);
-          console.log(latlng);
           var marker = L.marker(latlng, {
               icon: L.mapbox.marker.icon({
                 "marker-color": "#00FFD2",
